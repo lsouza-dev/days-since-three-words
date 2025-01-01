@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Imagens</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="intro">
+        <button id="startButton">Clique Aqui</button>
+    </div>
+    <div id="mainContent" style="display: none;">
+        <div class="hearts-container"></div>
+        <h1 class="titulo">Luiz e Helena ❤️</h1>
+        <div class="carrossel-container">
+            <div class="carrossel">
+                <div class="slide"><img src="img/1.jpg" alt="Imagem 1"></div>
+                <div class="slide"><img src="img/2.jpg" alt="Imagem 2"></div>
+                <div class="slide"><img src="img/3.jpg" alt="Imagem 3"></div>
+                <div class="slide"><img src="img/4.jpg" alt="Imagem 4"></div>
+                <div class="slide"><img src="img/5.jpg" alt="Imagem 5"></div>
+                <div class="slide"><img src="img/6.jpg" alt="Imagem 6"></div>
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+        <div class="indicators">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+        <div class="contagem-regressiva">
+            <span id="contador"></span>
+        </div>
+        <hr class="divisoria">
+        <div class="declaracao">
+            <p>Minha amada, a cada dia que passa, sinto meu amor por você crescer. Você é a razão do meu sorriso e a luz
+                dos meus dias. Obrigado por estar ao meu lado, hoje e sempre. Amo você!</p>
+        </div>
+    </div>
+    <hr class="divisoria">
+
+
+    <h1 class="titulo">Nossa Música</h1>
+    <div class="video-container">
+        <video src="video/musica.mp4" class="video-container video" controls ></video>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
