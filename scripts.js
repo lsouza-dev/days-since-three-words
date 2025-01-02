@@ -3,6 +3,7 @@ function createHeart() {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.innerText = '❤️';
+    heart.style.fontSize = `${(Math.random() * (6 - 2) + 2).toFixed(2)}rem`
     heart.style.left = Math.random() * 100 + 'vw';
     heart.style.animationDuration = 2 + Math.random() * 3 + 's';
     document.querySelector('.hearts-container').appendChild(heart);
@@ -13,16 +14,17 @@ function createHeart() {
 }
 
 // Criar corações em intervalos regulares
-setInterval(createHeart, 300);
+setInterval(createHeart, 500);
 
 // Animação do botão inicial
 document.getElementById('startButton').addEventListener('click', function() {
     this.innerText = 'EU TE AMO';
     this.style.transition = 'all 1.5s ease';
-    this.style.transform = 'scale(50)';
+    this.style.transform = 'scale(5)';
     this.style.opacity = '0';
     setTimeout(() => {
         document.getElementById('intro').style.display = 'none';
+        document.querySelector('.hearts-container').style.display = 'flex';
         document.getElementById('mainContent').style.display = 'flex';
     }, 1500);
 });
