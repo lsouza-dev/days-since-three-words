@@ -16,18 +16,43 @@ function createHeart() {
 // Criar corações em intervalos regulares
 setInterval(createHeart, 800);
 
-// Animação do botão inicial
-document.getElementById('startButton').addEventListener('click', function() {
-    this.innerText = 'EU TE AMO';
-    this.style.transition = 'all 1.5s ease';
-    this.style.transform = 'scale(5)';
-    this.style.opacity = '0';
-    setTimeout(() => {
-        document.getElementById('intro').style.display = 'none';
-        document.querySelector('.hearts-container').style.display = 'flex';
-        document.getElementById('mainContent').style.display = 'flex';
-    }, 1500);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const messageElement = document.getElementById('message');
+    const surpriseButton = document.getElementById('surpriseButton');
+    const fullMessage = "Oi, meu amor!\nTudo bem?\nTenho uma surpresinha pra você...\nEspero que goste! ❤️";
+    let currentIndex = 0;
+
+    function typeWriter() {
+        if (currentIndex < fullMessage.length) {
+            const currentChar = fullMessage.charAt(currentIndex);
+            if (currentChar === '\n') {
+                messageElement.innerHTML += '<br>'; // Converte quebra de linha para <br>
+            } else {
+                messageElement.innerHTML += currentChar === ' ' ? '&nbsp;' : currentChar; // Converte espaçamentos
+            }
+            currentIndex++;
+            setTimeout(typeWriter, 50);  // Ajuste a velocidade conforme necessário
+        } else {
+            surpriseButton.classList.add('show');
+        }
+    }
+
+    typeWriter();
+
+    surpriseButton.addEventListener('click', function() {
+        this.innerText = 'EU TE AMO';
+        this.classList.remove('show');
+        this.classList.add('animate-expand');
+
+        setTimeout(() => {
+            document.getElementById('intro').style.display = 'none';
+            document.querySelector('.hearts-container').style.display = 'flex';
+            document.getElementById('mainContent').style.display = 'flex';
+        }, 1500);
+    });
 });
+
 
 // Carrossel de Imagens e Deslizar
 let index = 0;
@@ -115,7 +140,10 @@ function atualizarTempoDecorrido() {
     const diferenca = agora - dataInicio;
 
     if (diferenca <= 0) {
-        document.getElementById('contador').innerText = "Ainda não começou!";
+        document.getElementById('dias').innerText = "0";
+        document.getElementById('horas').innerText = "0";
+        document.getElementById('minutos').innerText = "0";
+        document.getElementById('segundos').innerText = "0";
         return;
     }
 
@@ -124,8 +152,11 @@ function atualizarTempoDecorrido() {
     const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-    document.getElementById('contador').innerText = 
-        `Desde o nosso primeiro EU TE AMO se passaram:\n${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    document.getElementById('dias').innerText = dias;
+    document.getElementById('horas').innerText = horas;
+    document.getElementById('minutos').innerText = minutos;
+    document.getElementById('segundos').innerText = segundos;
 }
 
+// Chama a função a cada segundo
 setInterval(atualizarTempoDecorrido, 1000);

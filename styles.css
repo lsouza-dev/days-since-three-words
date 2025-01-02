@@ -3,23 +3,109 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #181818;
     margin: 0;
-    overflow-x: hidden; /* Impede rolagem horizontal */
-    overflow-y: auto;   /* Permite rolagem vertical */
+    font-family: 'Playfair Display', serif;
+    background-color: #181818;
+    color: #fff;
+    overflow-x: hidden; /* Evita rolagem lateral */
+    overflow-y: scroll;
+    height: 100dvh;
 }
 
 #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0 auto;
-    width: 100%; /* Garante que o elemento ocupe toda a largura da tela */
-    position: fixed;
-    background-color: #181818;
     z-index: 1000;
+}
+
+#centerContainer {
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#textContainer {
+    max-width: 90vw;
+    margin-bottom: auto;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+#textContainer p {
+    text-align: center;
+    padding: 1rem;
+    font-size: 3vw;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    #textContainer p {
+        text-align: start;
+        font-size: 5.5vw;
+    }
+}
+
+@media (max-width: 425px) {
+    #textContainer p {
+        text-align: start;
+        font-size: 6.4vw;
+    }
+}
+
+#surpriseButton {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #ff69b4;
+    border: none;
+    border-radius: 10px;
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 1s ease;
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
+}
+
+#surpriseButton.show {
+    opacity: 1;
+    animation: pulse 1s infinite alternate; /* Animação contínua de pulso */
+    margin-top: 5rem;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+#surpriseButton:hover {
+    background-color: #ff85c2;
+}
+
+.animate-expand {
+    animation: expand-and-disappear 1.5s ease forwards;
+}
+
+@keyframes expand-and-disappear {
+    0% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(8);
+        opacity: 0;
+    }
 }
 
 #mainContent {
@@ -32,32 +118,6 @@ body {
     color: #ffffff;
     margin-top: 20px;
 }
-
-#startButton {
-    padding: 15px 30px;
-    font-size: 2em;
-    color: #fff;
-    background-color: #ff69b4;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    animation: pulse 1s infinite alternate;
-}
-
-#startButton:hover {
-    background-color: #ff85c2;
-}
-
-@keyframes pulse {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.1);
-    }
-}
-
 .hearts-container {
     position: absolute;
     top: 0;
@@ -182,7 +242,7 @@ button:hover {
 }
 
 .divisoria {
-    width: 70%;
+    width: 82%;
     margin: 20px auto;
     border: 1px solid #ffffff;
 }
@@ -193,8 +253,62 @@ button:hover {
     max-width: 75%;
     text-align: center;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Define o espaçamento entre os itens */
 }
 
+.descricao {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+    color: #f0f0f0;
+    width: 100%; /* Garante que a descrição ocupe toda a largura na linha */
+}
+
+.enfase {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.tempo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 80px;
+    margin: 5px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    flex: 1 1 calc(25% - 20px); /* Ajusta a largura para 25% menos o espaço definido em gap */
+}
+
+.tempo {
+    font-size: 2em;
+}
+
+.legenda {
+    font-size: 0.75em;
+    color: #b0b0b0;
+}
+
+/* Media query para telas menores (tablet e abaixo) */
+@media (max-width: 768px) {
+    .tempo-container {
+        flex: 1 1 calc(45% - 20px); /* Ajusta para 45% da largura menos o espaço */
+        padding: 15px;
+    }
+}
+
+/* Media query para telas grandes */
+@media (min-width: 768px) {
+    .tempo-container {
+        flex: 1 1 calc(22% - 20px); /* Ajusta a largura para 22% menos o espaço definido em gap */
+        padding: 20px;
+    }
+}
 .declaracao {
     color: #ffffff;
     font-size: 1.2em;

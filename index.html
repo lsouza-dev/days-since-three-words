@@ -4,15 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrossel de Imagens</title>
+    <link rel="shortcut icon" href="icon/coracao.png" type="image/x-icon">
+    <title>L & H</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
     <div id="intro">
-        <button id="startButton">Clique Aqui</button>
+        <div id="centerContainer">
+            <div id="textContainer">
+                <p id="message"></p>
+            </div>
+            <button id="surpriseButton">Clique Aqui</button>
+        </div>
     </div>
     <div class="hearts-container" style="display: none;"></div>
     <div id="mainContent" style="display: none;">
@@ -38,7 +47,25 @@
             <span class="dot" onclick="currentSlide(5)"></span>
         </div>
         <div class="contagem-regressiva">
-            <span id="contador"></span>
+            <p class="descricao">
+                Após nosso primeiro <span class="enfase">EU TE AMO</span>, se passaram...
+            </p>
+            <div class="tempo-container">
+                <span class="tempo" id="dias"></span>
+                <span class="legenda">Dias</span>
+            </div>
+            <div class="tempo-container">
+                <span class="tempo" id="horas"></span>
+                <span class="legenda">Horas</span>
+            </div>
+            <div class="tempo-container">
+                <span class="tempo" id="minutos"></span>
+                <span class="legenda">Minutos</span>
+            </div>
+            <div class="tempo-container">
+                <span class="tempo" id="segundos"></span>
+                <span class="legenda">Segundos</span>
+            </div>
         </div>
         <hr class="divisoria">
         <div class="declaracao">
