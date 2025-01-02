@@ -4,7 +4,7 @@ function createHeart() {
     heart.className = 'heart';
     heart.innerText = '❤️';
     heart.style.fontSize = `${(Math.random() * (6 - 2) + 2).toFixed(2)}rem`
-    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.left = Math.random() * 89 + 'vw';
     heart.style.animationDuration = 2 + Math.random() * 3 + 's';
     document.querySelector('.hearts-container').appendChild(heart);
 

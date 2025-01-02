@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura */
+    border: 1px solid red; /* Para debug, remova depois */
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #181818;
@@ -5,7 +12,6 @@ body {
     overflow-x: hidden; /* Impede rolagem horizontal */
     overflow-y: auto;   /* Permite rolagem vertical */
     padding: 20px;
-    box-sizing: border-box;
 }
 
 #intro {
@@ -13,7 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    width: 92%;
+    width: 90%; /* Garante que o elemento ocupe toda a largura da tela */
     position: fixed;
     background-color: #181818;
     z-index: 1000;
@@ -65,10 +71,11 @@ body {
     z-index: 9999;
 }
 
-
 .heart {
     position: absolute;
     bottom: 0;
+    left: 50%; /* Centraliza o coração */
+    transform: translateX(-50%);
     color: #ff69b4;
     animation: float 5s linear infinite;
 }
@@ -194,21 +201,20 @@ button:hover {
 .declaracao {
     color: #ffffff;
     font-size: 1.2em;
-    margin: 20px;
+    margin: 20px auto;
     max-width: 80%;
     line-height: 1.6;
     text-align: justify;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 40px;
 }
 
 .video-container {
     display: flex;
     justify-content: center;
-    align-items: center; /* Para centralização vertical, se necessário */
+    align-items: center;
     width: 90%;
     max-width: 1000px;
-    margin: 0 auto; /* Adiciona auto-margin para centralizar o contêiner na página */
+    margin: 0 auto;
     border-radius: 1rem;
 }
 
