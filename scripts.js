@@ -10,11 +10,11 @@ function createHeart() {
 
     setTimeout(() => {
         heart.remove();
-    }, 5000);
+    }, 20000);
 }
 
 // Criar corações em intervalos regulares
-setInterval(createHeart, 500);
+setInterval(createHeart, 800);
 
 // Animação do botão inicial
 document.getElementById('startButton').addEventListener('click', function() {
@@ -25,7 +25,6 @@ document.getElementById('startButton').addEventListener('click', function() {
     setTimeout(() => {
         document.getElementById('intro').style.display = 'none';
         document.querySelector('.hearts-container').style.display = 'flex';
-        
         document.getElementById('mainContent').style.display = 'flex';
     }, 1500);
 });

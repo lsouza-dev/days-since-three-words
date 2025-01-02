@@ -79,7 +79,7 @@ body {
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh);
+        transform: translateY(250vh);
         opacity: 0;
     }
 }
@@ -174,7 +174,7 @@ button:hover {
 }
 
 .dot.active {
-    background-color: #717171;
+    background-color: red;
 }
 
 .divisoria {
@@ -195,9 +195,9 @@ button:hover {
     color: #ffffff;
     font-size: 1.2em;
     margin: 20px;
-    max-width: 60%;
+    max-width: 80%;
     line-height: 1.6;
-    text-align: center;
+    text-align: justify;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 40px;
 }
