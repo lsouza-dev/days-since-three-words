@@ -22,25 +22,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const surpriseButton = document.getElementById('surpriseButton');
     const fullMessage = "Oi, meu amor!\nTudo bem?\nTenho uma surpresinha pra você...\nEspero que goste! ❤️";
     let currentIndex = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    cursor.textContent = '|';
+    messageElement.appendChild(cursor);
 
+    // Função para o cursor piscar
+    function blinkCursor() {
+        cursor.style.visibility = cursor.style.visibility === 'visible' ? 'hidden' : 'visible';
+    }
+
+    // Digitação com cursor
     function typeWriter() {
         if (currentIndex < fullMessage.length) {
+            cursor.style.visibility = 'visible'; // Garante que o cursor apareça durante a digitação
             const currentChar = fullMessage.charAt(currentIndex);
             if (currentChar === '\n') {
-                messageElement.innerHTML += '<br>'; // Converte quebra de linha para <br>
+                cursor.insertAdjacentHTML('beforebegin', '<br>'); // Converte quebra de linha para <br>
             } else {
-                messageElement.innerHTML += currentChar === ' ' ? '&nbsp;' : currentChar; // Converte espaçamentos
+                cursor.insertAdjacentHTML('beforebegin', currentChar === ' ' ? '&nbsp;' : currentChar); // Converte espaçamentos
             }
             currentIndex++;
-            setTimeout(typeWriter, 50);  // Ajuste a velocidade conforme necessário
+            setTimeout(typeWriter, 50); // Ajuste a velocidade conforme necessário
         } else {
+            cursor.style.visibility = 'hidden'; // Esconde o cursor ao final
             surpriseButton.classList.add('show');
         }
     }
 
-    typeWriter();
+    // Início com o cursor piscando por 3 segundos
+    let blinkInterval = setInterval(blinkCursor, 500);
+    setTimeout(() => {
+        clearInterval(blinkInterval);
+        cursor.style.visibility = 'visible'; // Garante que o cursor esteja visível no início da digitação
+        typeWriter();
+    }, 3000);
 
-    surpriseButton.addEventListener('click', function() {
+    surpriseButton.addEventListener('click', function () {
         this.innerText = 'EU TE AMO';
         this.classList.remove('show');
         this.classList.add('animate-expand');
@@ -52,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     });
 });
+
 
 
 // Carrossel de Imagens e Deslizar
@@ -90,8 +109,6 @@ function currentSlide(n) {
     showSlide(index);
 }
 
-document.querySelector('.next').addEventListener('click', nextSlide);
-document.querySelector('.prev').addEventListener('click', prevSlide);
 
 // Eventos de arrastar para toque e mouse
 function handleStart(event) {
