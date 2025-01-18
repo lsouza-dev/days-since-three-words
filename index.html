@@ -15,9 +15,9 @@
     <meta property="og:title" content="Para quem eu amo!">
     <meta property="og:description"
         content="Uma data especial merece algo especial,né?">
-    <meta property="og:image" content="https://lsouza-dev.github.io/amor-ao-primeiro-match/img/pre-vizu.png">
+    <!--<meta property="og:image" content="https://lsouza-dev.github.io/days-since-three-words/img/pre-vizu.png"> 
     <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:height" content="630"> -->
     <meta property="og:type" content="website">
 
 </head>
@@ -122,8 +122,18 @@
 
     <h1 class="titulo" style="margin: 0; padding: 0;" >Nossa Música 🎼</h1>
     <div class="video-container">
-        <video src="video/musica.mp4" class="video-container video" controls ></video>
+        <video class="video" controls>
+            <!-- Formato MP4 -->
+            <source src="video/musica.mp4" type="video/mp4">
+            
+            <!-- Formato MOV (ideal para iOS) -->
+            <source src="video/musica.mov" type="video/quicktime">
+            
+            <!-- Texto alternativo caso nenhum formato seja suportado -->
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
     </div>
+    
     </div>
     <script src="scripts.js"></script>
 </body>
