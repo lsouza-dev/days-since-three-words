@@ -153,14 +153,14 @@ body {
     color: #ffffff;
     margin: 40px 0;
     text-align: center;
-    font-size: 8rem;
+    font-size: 6.5rem;
 }
 
 .carrossel-container {
     position: relative;
     width: 80%;
     max-width: 800px;
-    height: 600px;
+    height: 710px;
     overflow: hidden;
     background-color: #1f1f1f;
     border-radius: 10px;
@@ -304,6 +304,10 @@ button:hover {
     .titulo {
         font-size: 5rem;
     }
+
+    .carrossel-container{
+        height: 600px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -311,6 +315,10 @@ button:hover {
 
     .titulo {
         font-size: 3rem;
+    }
+
+    .carrossel-container{
+        height: 320px;
     }
     
 }

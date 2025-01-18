@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.textContent = '|';
     messageElement.appendChild(cursor);
 
+    surpriseButton.style.display = 'none';
+
     // Função para o cursor piscar
     function blinkCursor() {
         cursor.style.visibility = cursor.style.visibility === 'visible' ? 'hidden' : 'visible';
@@ -45,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex++;
             setTimeout(typeWriter, 50); // Ajuste a velocidade conforme necessário
         } else {
-            cursor.style.visibility = 'hidden'; // Esconde o cursor ao final
+            cursor.style.visibility = 'hidden';
+            surpriseButton.style.display = 'inline'; // Esconde o cursor ao final
             surpriseButton.classList.add('show');
         }
     }
