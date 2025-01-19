@@ -97,13 +97,14 @@ body {
     animation: expand-and-disappear 1.5s ease forwards;
 }
 
+
 @keyframes expand-and-disappear {
     0% {
         transform: scale(1.2);
         opacity: 1;
     }
     100% {
-        transform: scale(8);
+        transform: scale(4);
         opacity: 0;
     }
 }
@@ -126,6 +127,7 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 9999;
+
 }
 
 .heart {
@@ -133,6 +135,7 @@ body {
     bottom: 0;
     left: 50%; /* Centraliza o coração */
     transform: translateX(-50%);
+    overflow-x: hidden;
     color: #ff69b4;
     animation: float 5s linear infinite;
 }
@@ -294,6 +297,10 @@ button:hover {
     color: #b0b0b0;
 }
 
+#enfase-text{
+    cursor: pointer;
+}
+
 /* Media query para telas menores (tablet e abaixo) */
 @media (max-width: 768px) {
     .tempo-container {
@@ -347,11 +354,11 @@ button:hover {
     width: 90%;
     margin:  0 auto 2rem;
     max-width: 1400px;
-    border-radius: 1rem;
 }
 
 .video-container video {
     max-width: 100%;
     height: auto;
+    border-radius: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
