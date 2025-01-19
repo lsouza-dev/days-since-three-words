@@ -154,33 +154,32 @@ showSlide(index);
 setInterval(nextSlide, 5000);
 
 
-function alterarTextoDescricao(){
-    const enfase = document.querySelector("#enfase-text")
+function alterarTextoDescricao() {
+    const enfase = document.querySelector("#enfase-text");
 
-    if(enfase.classList.contains("acidente")){
+    if (enfase.classList.contains("acidente")) {
         enfase.classList.remove("acidente");
         enfase.classList.add("intencional");
 
         enfase.innerText = '"EU TE AMO"';
-        dynamicDate = '2025-01-19T13:48:00'
-    }else{
+        dynamicDate = '2025-01-19T13:48:00';
+    } else {
         enfase.classList.remove("intencional");
-        enfase.classList.add("acidente")
+        enfase.classList.add("acidente");
 
         enfase.innerText = '"Porque EU TE AMO"';
         dynamicDate = '2025-01-19T03:50:00';
     }
 }
 
-document.querySelector("#enfase-text").addEventListener("click",alterarTextoDescricao);
+document.querySelector("#enfase-text").addEventListener("click", alterarTextoDescricao);
+document.querySelector("#enfase-text").addEventListener("touchstart", alterarTextoDescricao);
 
 let dynamicDate = '2025-01-19T03:50:00';
+
 // Tempo Decorrido
 function atualizarTempoDecorrido(stringData) {
-    
-    
-
-    const dataInicio =  new Date(stringData);
+    const dataInicio = new Date(stringData);
     const agora = new Date();
     const diferenca = agora - dataInicio;
 
@@ -205,4 +204,3 @@ function atualizarTempoDecorrido(stringData) {
 
 // Chama a função a cada segundo
 setInterval(() => atualizarTempoDecorrido(dynamicDate), 1000);
-
