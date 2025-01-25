@@ -167,7 +167,6 @@ carrossel.addEventListener('touchend', handleEnd);
 updateSlidePosition();
 startAutoSlide(); // Inicia a alternância automática
 
-
 let dynamicDate = '2025-01-19T03:50:00';
 
 // Função para alterar o texto e a data
@@ -217,9 +216,11 @@ function atualizarTempoDecorrido(stringData) {
     document.getElementById('segundos').innerText = segundos;
 }
 
-// Evento para alterar o texto e a data
-document.querySelector("#enfase-text").addEventListener("click", alterarTextoDescricao);
-document.querySelector("#enfase-text").addEventListener("touchstart", alterarTextoDescricao);
+// Adicionar evento para alterar o texto e a data (compatível com mobile e desktop)
+document.querySelector("#enfase-text").addEventListener("pointerdown", (event) => {
+    event.preventDefault(); // Prevenir comportamento padrão no mobile
+    alterarTextoDescricao();
+});
 
 // Atualiza o tempo decorrido a cada segundo
 setInterval(() => atualizarTempoDecorrido(dynamicDate), 1000);
