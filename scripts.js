@@ -77,46 +77,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Carrossel de Imagens e Deslizar
+
+const carrossel = document.querySelector('.carrossel');
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
 let index = 0;
-let slides = document.querySelectorAll('.slide');
-let dots = document.querySelectorAll('.dot');
-let startX = 0;
+let autoSlideInterval;
 let isDragging = false;
+let startX = 0;
 
-function showSlide(n) {
-    if (n >= slides.length) index = 0;
-    if (n < 0) index = slides.length - 1;
-
-    slides.forEach((slide, i) => {
-        slide.style.display = i === index ? 'block' : 'none';
-    });
+// Função para atualizar o slide visível
+function updateSlidePosition() {
+    carrossel.style.transform = `translateX(${-index * 100}%)`;
 
     dots.forEach((dot, i) => {
-        dot.className = dot.className.replace(' active', '');
-        if (i === index) dot.className += ' active';
+        dot.classList.toggle('active', i === index);
     });
 }
 
+// Função para o próximo slide
 function nextSlide() {
-    index++;
-    showSlide(index);
+    index = (index + 1) % slides.length;
+    updateSlidePosition();
 }
 
+// Função para o slide anterior
 function prevSlide() {
-    index--;
-    showSlide(index);
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlidePosition();
 }
 
+// Função para ir para um slide específico
 function currentSlide(n) {
     index = n;
-    showSlide(index);
+    updateSlidePosition();
+    resetAutoSlide();
 }
 
+// Inicia o temporizador de alternância automática
+function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 5000);
+}
+
+// Reinicia o temporizador de alternância automática
+function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+}
 
 // Eventos de arrastar para toque e mouse
 function handleStart(event) {
     isDragging = true;
     startX = event.touches ? event.touches[0].clientX : event.clientX;
+    resetAutoSlide(); // Reinicia o temporizador ao iniciar o arrasto
 }
 
 function handleMove(event) {
@@ -131,29 +145,32 @@ function handleMove(event) {
         } else {
             prevSlide();
         }
-        isDragging = false;
+        isDragging = false; // Evita múltiplas transições no mesmo movimento
     }
 }
 
-function handleEnd(event) {
+function handleEnd() {
     isDragging = false;
 }
 
-const carrosselElement = document.querySelector('.carrossel');
+// Adiciona os eventos para toque e mouse
+carrossel.addEventListener('mousedown', handleStart);
+carrossel.addEventListener('mousemove', handleMove);
+carrossel.addEventListener('mouseup', handleEnd);
+carrossel.addEventListener('mouseleave', handleEnd);
 
-carrosselElement.addEventListener('mousedown', handleStart);
-carrosselElement.addEventListener('mousemove', handleMove);
-carrosselElement.addEventListener('mouseup', handleEnd);
-carrosselElement.addEventListener('mouseleave', handleEnd);
+carrossel.addEventListener('touchstart', handleStart);
+carrossel.addEventListener('touchmove', handleMove);
+carrossel.addEventListener('touchend', handleEnd);
 
-carrosselElement.addEventListener('touchstart', handleStart);
-carrosselElement.addEventListener('touchmove', handleMove);
-carrosselElement.addEventListener('touchend', handleEnd);
-
-showSlide(index);
-setInterval(nextSlide, 5000);
+// Inicializa o carrossel
+updateSlidePosition();
+startAutoSlide(); // Inicia a alternância automática
 
 
+let dynamicDate = '2025-01-19T03:50:00';
+
+// Função para alterar o texto e a data
 function alterarTextoDescricao() {
     const enfase = document.querySelector("#enfase-text");
 
@@ -162,22 +179,20 @@ function alterarTextoDescricao() {
         enfase.classList.add("intencional");
 
         enfase.innerText = '"EU TE AMO"';
-        dynamicDate = '2025-01-19T13:48:00';
+        dynamicDate = '2025-01-19T13:48:00'; // Atualiza a data
     } else {
         enfase.classList.remove("intencional");
         enfase.classList.add("acidente");
 
         enfase.innerText = '"Porque EU TE AMO"';
-        dynamicDate = '2025-01-19T03:50:00';
+        dynamicDate = '2025-01-19T03:50:00'; // Atualiza a data
     }
+
+    // Atualiza imediatamente os valores exibidos
+    atualizarTempoDecorrido(dynamicDate);
 }
 
-document.querySelector("#enfase-text").addEventListener("click", alterarTextoDescricao);
-document.querySelector("#enfase-text").addEventListener("touchstart", alterarTextoDescricao);
-
-let dynamicDate = '2025-01-19T03:50:00';
-
-// Tempo Decorrido
+// Atualiza o tempo decorrido
 function atualizarTempoDecorrido(stringData) {
     const dataInicio = new Date(stringData);
     const agora = new Date();
@@ -202,5 +217,9 @@ function atualizarTempoDecorrido(stringData) {
     document.getElementById('segundos').innerText = segundos;
 }
 
-// Chama a função a cada segundo
+// Evento para alterar o texto e a data
+document.querySelector("#enfase-text").addEventListener("click", alterarTextoDescricao);
+document.querySelector("#enfase-text").addEventListener("touchstart", alterarTextoDescricao);
+
+// Atualiza o tempo decorrido a cada segundo
 setInterval(() => atualizarTempoDecorrido(dynamicDate), 1000);
