@@ -216,11 +216,8 @@ function atualizarTempoDecorrido(stringData) {
     document.getElementById('segundos').innerText = segundos;
 }
 
-// Adicionar evento para alterar o texto e a data (compatível com mobile e desktop)
-document.querySelector("#enfase-text").addEventListener("pointerdown", (event) => {
-    event.preventDefault(); // Prevenir comportamento padrão no mobile
-    alterarTextoDescricao();
-});
+// Adicionar evento para alterar o texto e a data (apenas "click" para toque rápido e cliques)
+document.querySelector("#enfase-text").addEventListener("click", alterarTextoDescricao);
 
 // Atualiza o tempo decorrido a cada segundo
 setInterval(() => atualizarTempoDecorrido(dynamicDate), 1000);
