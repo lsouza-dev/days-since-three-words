@@ -178,7 +178,7 @@ function alterarTextoDescricao() {
         enfase.classList.add("intencional");
 
         enfase.innerText = '"EU TE AMO"';
-        dynamicDate = '2025-02-01T10:20:00'; // Atualiza a data
+        dynamicDate = '2025-02-01T10:33:00'; // Atualiza a data
     } else {
         enfase.classList.remove("intencional");
         enfase.classList.add("acidente");
